@@ -13,4 +13,11 @@ function fuzzy-diff {
   git status -s | fzf | awk '{print $2}' | xargs git diff
 }
 
+# pick a file with fzf and compare it with another branch
+function fuzzy-compare {
+	local file=$(fzf)
+	local branch=$(git branch | fzf | awk '{print $1}')
+	git diff $branch $file
+}
+
 "$@"
