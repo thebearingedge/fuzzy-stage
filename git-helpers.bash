@@ -30,4 +30,9 @@ function fuzzy-restore {
 		git checkout $file
 	fi
 }
-"$@"
+
+# make aliases for all fuzzy git functions
+alias ga='fuzzy-stage'
+alias gd='fuzzy-diff'
+alias gc='fuzzy-compare'
+alias gr='fuzzy-restore'
