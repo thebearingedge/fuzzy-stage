@@ -15,14 +15,17 @@ function fuzzy-diff {
 
 # pick a file with fzf and compare it with another branch
 function fuzzy-compare {
-	local file=$(fzf)
-	local branch=$(git branch | fzf | awk '{print $1}')
-	git diff $branch $file
+	local file
+	local branch
+	file=$(fzf)
+	branch=$(git branch | fzf | awk '{print $1}')
+	git diff "$branch" "$file"
 }
 
 # git status pipe to fzf and restore the selected file with confirm prompt
 function fuzzy-restore {
-	local file=$(git status -s | fzf | awk '{print $2}')
+	local file
+	file=$(git status -s | fzf | awk '{print $2}')
 	read -p "Are you sure you want to loss your changes for $file? [y/n] " -n 1 -r
 	echo
 	if [[ $REPLY =~ ^[Yy]$ ]]
